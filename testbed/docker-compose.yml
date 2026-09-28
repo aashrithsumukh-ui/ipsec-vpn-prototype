@@ -1,0 +1,43 @@
+services:
+  vpn-left:
+    image: strongswan/strongswan:6.0.0
+    cap_add:
+      - NET_ADMIN
+    privileged: true
+    volumes:
+      - ./configs/left:/etc/swanctl/conf.d
+    command: ["/bin/sh", "-c", "charon & sleep 2 && swanctl --load-all && sleep infinity"]
+    networks:
+      ipsecnet:
+        ipv4_address: 172.28.0.2
+
+  vpn-right:
+    image: strongswan/strongswan:6.0.0
+    cap_add:
+      - NET_ADMIN
+    privileged: true
+    volumes:
+      - ./configs/right:/etc/swanctl/conf.d
+    command: ["/bin/sh", "-c", "charon & sleep 2 && swanctl --load-all && sleep infinity"]
+    networks:
+      ipsecnet:
+        ipv4_address: 172.28.0.3
+
+  capture:
+    image: nicolaka/netshoot:latest
+    network_mode: "service:vpn-left"
+    cap_add:
+      - NET_ADMIN
+    command: ["tcpdump", "-i", "any", "-w", "/captures/testbed.pcap", "not", "port", "22"]
+    volumes:
+      - ./captures:/captures
+    depends_on:
+      - vpn-left
+      - vpn-right
+
+networks:
+  ipsecnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16

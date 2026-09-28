@@ -1,0 +1,10 @@
+{
+  "0": "bulk",
+  "1": "email",
+  "2": "icmp",
+  "3": "mixed",
+  "4": "video",
+  "5": "voip",
+  "6": "web",
+  "7": "whatsapp"
+}

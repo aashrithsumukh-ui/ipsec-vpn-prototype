@@ -1,0 +1,107 @@
+{
+  "accuracy": 0.9412,
+  "macro_f1": 0.9333,
+  "evaluation": "held-out config split via GroupShuffleSplit",
+  "train_size": 33,
+  "test_size": 17,
+  "config_groups": [
+    "3DES|HMAC-MD5-96|2|off|transport|3des-family",
+    "3DES|HMAC-SHA1-96|14|off|tunnel|3des-family",
+    "AES-CBC|HMAC-SHA1-96|14|off|tunnel|aes-cbc-family",
+    "AES-CBC|SHA2-256-128|20|on|transport|aes-cbc-family",
+    "AES-GCM-16|SHA2-256-128|19|on|tunnel|aes-gcm-family",
+    "AES-GCM-16|SHA2-384-192|20|off|tunnel|aes-gcm-family"
+  ],
+  "labels": [
+    "bulk",
+    "email",
+    "icmp",
+    "mixed",
+    "video",
+    "voip",
+    "web",
+    "whatsapp"
+  ],
+  "confusion_matrix": [
+    [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      3,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2
+    ]
+  ]
+}
